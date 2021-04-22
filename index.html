@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Something wrong happened!</title>
+  </head>
+  <body style="text-align: center;">
+    <h1>Something wrongo!</h1>
+    <pre id="error" style="text-align: left; white-space: pre-wrap;"></pre>
+  </body>
+  <script type="text/javascript">
+      const searchParams = new URLSearchParams(window.location.search);
+      const error = searchParams.get("error");
+
+      if (error) {
+        const decoded = atob(error);
+        const parsed = JSON.parse(decoded);
+
+        const reparsed = JSON.stringify(parsed, null, 2);
+        console.log(parsed);
+        document.getElementById("error").innerHTML = reparsed;
+      }
+    </script>
+</html>
